@@ -1,0 +1,79 @@
+Em sistemas unix-like tudo é considerado um ficheiro. Um comando pode produzir um resultado ou mensagens de erro/status. O resultado do comando fica num ficheiro especial chamado Standard output(stdout) e as mensagens de erro/status ficam num ficheiro chamado Standard error(stderr).NB: Estes ficheiros nao ficam salvos no disco, sao exibidos na tela.Standard input(stdin), está vinculado ao teclado permitindo que os programas aceitem input.
+
+
+I/O(input/output) redirection-> permite que mudemos o destino output e origem do input. Geralmente o output vai para tela e o input vem do teclado.
+
+
+
+
+************************************************************Redireccionando********************************************************************************************************************
+
+Para redireccionar o output de um comando usamos o operador ">".
+
+Sintaxe:
+
+Comando > destino
+
+ex: ls -l /usr/bin > ls-output.txt
+
+NB: No comando acima estamos a mandar o resultado do ls para um ficheiro de nome "ls-output.txt". Se redireccionarmos o resultado de outro comando para o ficheiro, o ficheiro será sobrescrito, ou seja, só terá o resultado do novo comando.
+
+
+NB2: Se quisermos eliminar o contéudo do ficheiro ou se quisermos criar um ficheiro vazio faremos : > ficheiro.
+
+ex: > ls-output.txt
+
+Se quisermos que o resultado do comando nao sobrescreva o conteúdo do ficheiro, mas sim seja adicionado ao que está lá usamos o operador ">>"
+
+Sintaxe:
+
+Comando >> destino
+
+ex:ls -l /usr/bin >> ls-output.txt
+
+NB:Se o ficheiro nao existir será criado(Aplicável para os dois casos).
+
+
+************************************************************Redireccionando erros**************************************************************************************************************
+
+Internamente um ficheiro do stdout está associodo a 0, um stdin está associado a 1 e stderr está associado a 2.
+
+Para redireccionar o erro a um ficheiro colocamos 2 antes do ">".
+
+Sintaxe:
+
+comando  2> destino
+
+ex: ls -l /bin/usr 2> ls-error.txt
+
+NB: Como o directório /bin/usr nao existe este comando gerará um erro.
+
+
+
+Redireccionando ambos stdout e stderr para o mesmo ficheiro.
+
+Sintaxe:
+
+comando > destino 2>&1 -> versao antiga bash
+
+NB: O "&1" refere-se ao stdout, ou seja, depois o stderr é redireccionado para o stdout.
+
+ex: ls -l /bin/usr > ls-output.txt 2>&1
+
+NB: É importante que a ordem seja mantida, primeiro o stdout e depois o stderr.
+
+Sintaxe:
+
+comando destino  >& -> versao recente do bash
+
+ex: ls -l/bin/usr &> ls-output.txt
+
+
+
+*****************************************************************/dev/null******************************************************************************************************************
+
+/dev/null-> é um directório em que podemos mandar dados para lá e nada acontece(se tentarmos listar nao retornará nada-como se fosse uma "lixeira").
+
+ex:ls -l/bin/usr 2> /dev/null
+
+NB: Se fizermos isto, estamos a nos desfazer do output de erro que o comando retorna.

@@ -1,0 +1,40 @@
+cat-> é usado para exibir texto(ideal para ficheiros com textos curtos visto que ele exibe o texto sem paginacao diferente do less), também pode ser usado para concatenar ficheiros e escrever neles. NB: O cat pode levar mais de um ficheiro como argumento.
+
+
+********************************************************************Exibindo conteúdo de ficheiros*********************************************************************************************
+
+Sintaxe:
+
+cat ficheiro1... ficheiroN
+
+ex: cat ls-output.txt
+
+ex2:cat ls-output.txt ls-error.txt
+
+
+********************************************************************Concatenando ficheiros****************************************************************************************************
+Sintaxe:
+
+cat ficheiro1... ficheiroN > destino
+
+ex:cat ls-output.txt ls-error.txt > full.txt 
+
+
+********************************************************************Escrevendo em ficheiros****************************************************************************************************
+
+NB: Se colocarmos cat sem argumento veremos que o cursor deslocar-se-á para outra linha e piscará esperando um input. Colocado o input(escrevermos algo) se clicarmos enter veremos que o texto será retornado na tela. Para sair do cat fazemos :ctrl+D.
+
+
+Sintaxe:
+
+cat > ficheiro/destino
+
+NB:Após o comando, inserimos o texto/conteúdo e encerramos com ctrl+D.
+
+ex: cat > lazy_dog.txt
+
+exInput:I manifest I will be very sucessful.
+
+
+
+

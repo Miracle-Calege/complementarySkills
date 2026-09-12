@@ -1,0 +1,144 @@
+Pipelines->basicamente é capacidade de um comando usar o stdout do outro como stdin  no seu stdout. Para este fim usamos o operador "|".
+
+
+*************************************************Pipeline**************************************************************************************************************************************
+Sintaxe: 
+
+comando1 | comando2
+
+NB: É possível colocar mais comandos na pipelines(sao só dois).
+
+ex: ls -l /usr/bin | less
+
+NB:No caso acima o stdout do ls -l /usr/bin  vai agir como stdin para o comando less.
+
+
+
+
+*************************************************Filtros**************************************************************************************************************************************
+
+sort-> organiza os comandos em ordem alfabética.
+
+ex: ls /bin /usr/bin | sort | less
+
+NB1: O comando acima organiza todos ficheiros executáveis em ordem alfabética(sort) e visualizamos(less).
+
+uniq->  remove conteúdo duplicado da lista.
+
+ex: ls /bin /usr/bin | sort | uniq | less
+
+NB2: Se quisermos ver a lista de duplicados colocamos a flag "-d" no comando.
+
+
+
+
+
+
+
+**************************************************************************WC*************************************************************************************************************
+
+wc(word count)-> é um comando usado para exibir o número de linhas, palavras e bytes contidos num ficheiro(o output do comando segue a ordem linha, palavras e bytes).
+
+Sintaxe:
+
+wc ficheiro
+
+ex: wc ls-output.txt
+
+NB:Podemos colocar mais de um ficheiro.
+
+ex2: wc ls-output.txt ls-error.txt
+
+NB2: Se colocarmos wc sem argumentos veremos o cursor noutra a linha a piscar a espera do input. Devemos de fornecermos o input encerramos usando ctrl+D, daí saberemos a quantidade de linhas, palavras e bytes do nosso input.
+
+A flag "-l" restringe o comando só a exibir linhas.
+
+ex:ls /bin /usr/bin | sort | uniq | wc -l
+
+*****************************************************************************grep**********************************************************************************************************
+
+grep->é usado para encontrar padroes textuais nos ficheiros.
+
+Sintaxe:
+
+grep padrao(pattern) ficheiro
+
+NB:Quando o comando encontra o padrao no ficheiro ele imprime as linhas que contem esse padrao. Falaremos mais de patterns no capítulo 19.
+
+ex: ls /bin /usr/bin | sort | uniq | grep zip
+
+Flags:
+
+-i:ignora letras maiúsculas
+-v:imprime apenas as linhas que nao corresponde ao nosso padrao.
+
+
+*****************************************************************************head/tail*********************************************************************************************************
+
+head/tail->ambos imprimem 10 linhas de um ficheiro, ideias quando nao queremos todos o conteúdo do ficheiro. head as primeiras 10 e tail as últimas 10.
+
+NB:Usamos a flag "-n" para limitar a quantidade de linhas a serem exibidas.
+
+Sintaxe:
+
+head/tail ficheiro(s)
+
+ex:head ls-output.txt
+
+NB:No comando acima exibimos as 10 primeiras linhas do ficheiro.
+
+ex2:head ls-output.txt ls-error.txt
+
+
+
+Limitando o número de linhas
+
+Sintaxe:
+
+head/tail -n quantidade ficheiro(s)
+
+ex: tail -n 5 output.txt
+
+NB:No comando acima exibimos as 5 últimas linhas do ficheiro.
+
+
+
+ls /usr/bin | tail -n 5
+
+NB: Neste comando serao exibidos as 5 últimas ficheiros no directório /usr/bin.
+
+
+
+
+
+Usamos a flag "-f" simplesmente com o tail para ver ficheiros em tempo real.
+
+ex:tail -f /var/log/syslog
+
+NB:Se abrirmos uma app veremos o que está a acontecer no terminal.Para fechar usamos ctrl+C./var/log/syslog pode variar sendo também para algumas distros /var/log/messages.
+
+
+
+*****************************************************************************tee*********************************************************************************************************
+ tee-> é usado para copiar o resultado de um redirrecionamento no pipeline permitindo que esse mesmo conteúdo também possa ser encaminhado para outro comando.
+ 
+ Sintaxe:
+ 
+ comando1 | tee destino | comando2
+ 
+ ex:ls /usr/nim |tee ls.txt | grep zip
+
+
+
+
+
+
+****************************************************************Nota***********************************************************************************************************************
+
+
+
+
+
+NB: O ">" redirecciona o para um ficheiro enquanto "|" redirecciona para um comando.
+
+
