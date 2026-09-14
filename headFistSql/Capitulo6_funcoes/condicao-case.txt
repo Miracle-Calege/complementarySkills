@@ -1,0 +1,38 @@
+**********************************************************************************CASE*********************************************************************************************************
+
+
+Sintaxe:
+
+Comando(SELECT,INSERT,UPDATE,DELETE)
+
+CASE -> inicia o case statement
+
+WHEN condiçao1
+
+THEN "instrucao a ser executada se a condicao for cumprida"
+
+WHEN condiçao2
+
+THEN "instrucao a ser executada se a condicao for cumprida"
+
+
+ELSE "Instrucao a ser executada se nenhum das condiçoes acima for cumprida"/o ELSE é opcional
+
+END; -> encerra o case statement
+
+
+ex:
+UPDATE movie_table
+SET category =
+CASE
+  WHEN drama = 'T' THEN 'drama' (Se na coluna drama o valor for 'T' será colocado na coluna category o valor 'drama')
+  WHEN comedy = 'T' THEN 'comedy'
+  WHEN action = 'T' THEN 'action'
+  WHEN gore = 'T' THEN 'horror'
+  WHEN scifi = 'T' THEN 'scifi'
+  WHEN for_kids = 'T' THEN 'family'
+  WHEN cartoon = 'T' THEN 'family'
+  ELSE 'misc' (se nao forem cumpridas as condicoes acima colocaremos misc na coluna category)
+END;
+
+NB:Quando uma condiçao é cumprida o SGBD salta para o END e termina o comando, ou seja, se tivermos várias colunas que cumprem com a condiçao(ex: na primeira linha tivermos 'T' na coluna drama e comedy) o SGBD só para executar a instruçao referente a primeira condiçao que foi cumprida, no caso do exemplo colocar-se-ia drama na coluna category.

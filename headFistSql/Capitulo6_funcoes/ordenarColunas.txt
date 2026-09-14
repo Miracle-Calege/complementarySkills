@@ -1,0 +1,52 @@
+ORDER BY->é usado para agrupar colunas numa ordem especificada.Por defeito organiza em ordem alfabética, geralmente sao exibidos Strings que começam por número.
+
+Observaçoes:
+
+1.Caracteres nao alfabéticos sao exibidos antes e depois dos números.
+
+2.Números sao exibidos antes dos textos.
+
+3.Valores Null sao exibidos antes dos números e caracteres alfabéticos.
+
+4.Caracteres maiúsculos aparecem antes dos minúsculos.
+
+5.Valores com espaços aparecem antes dos sem espaço("A 1" aparece antes do "A1").
+
+NB:Ordena também números.
+
+
+
+
+***********************************************************************ORDER BY****************************************************************************************************************
+
+Sintaxe:
+
+Comando ORDER BY coluna;
+
+
+ex: SELECT title, category FROM movie_table WHERE category='family' ORDER BY title;
+
+NB: Retornaremos a colunas title e category somente onde o valor da coluna category for 'family'(a coluna title será exibida em ordem alfabética).
+
+
+NB2:Podemos ordenar mais de uma coluna.
+
+
+ex2:SELECT * FROM movie_table
+ORDER BY category, purchased, title;
+
+
+
+Usamos "DESC" se quisermos que o resultado esteja na ordem decrescente e "ASC" na ordem crescente(padrao).
+
+
+
+Sintaxe:
+
+Comando ORDER BY coluna ASC/DESC;
+
+
+ex3:
+SELECT title, purchased
+FROM movie_table
+ORDER BY purchased DESC, title ASC;

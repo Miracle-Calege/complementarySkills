@@ -1,0 +1,92 @@
+GROUP BY-> é usado quando queremos associar valores de colunas a resultados de funçoes agregadas.
+
+
+********************************************************************Funçoes*******************************************************************************************************************
+
+SUM()-> é uma funçao usada para somar valores em colunas.
+
+AVG()->retorna a média dos valores em colunas(somatorio de todos valores/quantidade dos valores).
+
+MIN()-> retorna o menor valor na coluna
+
+MAX()->retorna o maior valor na coluna
+
+COUNT()->retorna o número de linhas da coluna(se o valor for null nao é contado).
+
+DISTINCT-> nao é uma funçao por isso nao tem "()" mas usa-se similarmente a uma funçao,retorna somente valores distintos(sem duplicados).
+
+
+
+Sintaxe:
+
+SELECT funçao(coluna) FROM tabela;
+
+
+ex:SELECT SUM(sales)
+FROM cookie_sales
+WHERE first_name = 'Nicole';
+
+ex2:SELECT DISTINCT sale_date
+FROM cookie_sales
+ORDER BY sale_date;
+
+
+ex3:SELECT COUNT(DISTINCT sale_date)
+FROM cookie_sales;
+
+NB:A funçao COUNT() vai contar os valores distintos, ou seja, só vai contar uma vez mesmo se o valores for repetido várias vezes.
+
+
+Sintaxe com GROUP BY:
+
+SELECT coluna, funçao(coluna) FROM tabela GROUP BY  coluna;
+
+ex:
+SELECT  first_name, SUM(sales)
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY SUM(sales)DESC;
+
+NB:No comando acima estamos a associar cada nome a uma soma.
+
+
+ex2:SELECT first_name, AVG(sales)
+FROM cookie_sales
+GROUP BY first_name;
+
+ex3:ELECT first_name, MAX(sales)
+FROM cookie_sales
+GROUP BY first_name;
+
+
+ex4:SELECT first_name, MIN(sales)
+FROM cookie_sales
+GROUP BY first_name;
+
+
+
+********************************************************************Limitando resultados*******************************************************************************************************
+
+LIMIT-> é usado para filtrar a quantidade de resultados que queremos visualizar.
+
+
+Sintaxe:
+
+SELECT colunas FROM tabela LIMIT numero/intervalo;
+
+ex:SELECT *FROM aluno LIMIT 10;
+
+Serao retornadas apenas as primeiras 10 linhas.
+
+
+ex2:SELECT *FROM aluno LIMIT 0,4;
+
+NB:0 refere-se ao ponto de partida(primeiro valor na coluna) e 4 a quantidade de resultados que serao exibidos(0,1,2,3).
+
+ex2:SELECT first_name, SUM(sales)
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY SUM(sales)DESC
+LIMIT 2;
+
+
