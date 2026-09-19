@@ -1,0 +1,210 @@
+echo-> é um comando que imprime o texto recebido como argumento com standard output.
+
+Sintaxe:
+
+echo texto
+
+ex: echo Miracle Calege
+
+NB:O texto acima será impresso no terminal.Se for introduzido um wildcard depois do echo a wildcard nao será impressa, mas sim o seu retorno. Se tivessemos vários espaços entre o Miracle e Calege(ex: Miracle      Calege) o output continuaria a ser o mesmo do exemplo, ou seja, o comando vai ignorar os restantes espaços e deixar somente um.
+
+ex2: echo *
+
+NB2:O comando acima retornará todos os ficheiro/directório no directório actual. Podemos usar o echo com ~.
+
+ex:echo ~
+
+ex2: echo ~username
+
+
+*****************************************************Expressoes aritméticas********************************************************************************************************************
+
+O shell permite que façamos operaçoes aritméticas.
+
+Sintaxe:
+
+echo $((operaçao))
+
+
+Operaçoes:
+
+operador             Descriçao
++		     adiçao
+
+-             	    subtracçao
+
+*		    multiplicaçao
+
+/		   divisao(a divisao deve resultar em um número inteiro)
+
+%		   resto da divisao
+
+
+**		  potência
+
+
+
+
+ex: echo $((2+2))
+
+NB:Vai ser impresso o resultado(4) na terminal.E só sao permitidas operaçoes para números inteiros.
+
+ex2: echo $(((5**2)*3))
+
+
+NB2: É possível juntar texto com resultado de expressoes aritméticas.
+
+ex3: echo Cinco dividido por 2 igual a $((5/2))
+
+NB:No exemplo acima a parte decimal será ignorada.
+
+
+*****************************************************Geraçao de texto/números*****************************************************************************************************************
+
+É possível criar múltiplos textos usando padrao entre {}.
+
+Sintaxe:
+
+echo texto {padrao}
+
+NB: O padrao nao pode ter espaços que nao estejam entre " ".
+
+ex:echo Front-{A,B,C}-Back
+
+Output: Front-A-Back Front-B-Back Front-C-Back
+
+ex2: echo Number_{1..5}
+
+output: Number_1 Number_2 Number_3 Number_4 Number_5
+
+ex3:echo {01..15}
+
+output:01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+
+ex4:echo {Z..A}
+
+ex5:echo a{A{1,2},B{3,4}}b
+
+output:aA1b  aA2b  aB3b aB4b 
+
+
+NB:O padrao acima pode ser útil para casos em que tenhamos que criar várias pastas com nomes relacionados a datas.
+
+ex:mkdir {2007..2009}-{01..12}
+
+
+*****************************************************Imprimindo o conteúdo de variáveis*******************************************************************************************************
+
+printenv|env -> podemos usar este comando para ver  a lista das variáveis disponíveis.
+
+
+Sintaxe:
+
+echo $variável
+
+ex:echo $USER
+
+NB:O comando acima vai retornar o nome do user
+
+
+*****************************************************Retornando o output de comandos como textos**********************************************************************************************
+
+Sintaxe:
+
+echo $(comando)
+
+ex:echo $(ls)
+
+
+NB: Podemos usar a mesma estrutura com outros comandos. ex: ls -l $(which cp)  ou ls -l `which cp`que vai listar os conteúdos do caminho retornado.
+
+
+*****************************************************Aspas duplas****************************************************************************************************************************
+
+Se colocarmos um texto dentro de aspas duplas todos os caracteres especiais usados pelo shell serao tratados como caracteres comuns, mas há exceçoes($,\,`).
+
+NB:Supondo que tenhamos um ficheiro nomeado da seguinte maneira: two words.txt(com espaço entre two e words). Se tentarmos listar o ficheiro assim : ls -l two words.txt teremos um erro, por isso devemos colocar o nome entre aspas duplas porque contem um espaco: ls -l "two words.txt "
+
+Agora se fizermos um :
+
+echo "Miracle       Calege"
+
+output: Miracle              Calege(diferentemente do primeiro exemplo dado).
+
+
+NB2:Espaços em branco, nova linhas, tabulaçoes por defeito sao considerados delimitadores e sao ignorados pelo comando echo. É por isso que se fizermos:
+
+ex1: echo $(cal)
+
+Veremos que a apresentaçao do calendário será diferente, os delimitadores sao ignorados. Enquanto quando usamos aspas duplas os delimitadores sao considerados parte do texto.
+
+ex2: echo "$(cal)"
+
+Veremos que a apresentaçao é aquela que estamos habituados.
+
+
+
+*****************************************************Aspas simples****************************************************************************************************************************
+
+echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+
+output:text /home/me/ls-output.txt a b foo 4 me
+
+
+echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
+
+output:text ~/*.txt {a,b} foo 4 me
+
+echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
+
+output:text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+
+
+Como podemos notar nos exemplos as aspas simples ignoram os elementos que as aspas duplas nao. No terceiro output o "$" foi tratado como um símbolo normal.
+
+*****************************************************Caracteres de escape**********************************************************************************************************************
+ex: echo "The balance for user $USER is: $5.00"
+
+output:The balance for user $USER is: .00
+
+NB:O "$" vai consumir o primeiro dígito. Para que possamos usar um caracter especial como uma caracter comum dentro das aspas duplas colocamos "\" precedendo o caracter especial.
+
+ex2: echo "The balance for user $USER is:\$5.00"
+
+output:The balance for user $USER is: 5.00
+
+Também ideal para caso em que temos ficheiros com nomes que contem caracteres especiais($,!,&).
+
+ex:ls -l \&filename.txt
+
+Se quisermos que a "\" apareça no nome do ficheiro usamos "\\".
+
+ex:mv \&filename.txt \\filename.txt
+
+Agora o nome do ficheiro é \filename.txt
+
+
+*****************************************************Sequência de escape**********************************************************************************************************************
+
+Sequência de escape                        Significado
+
+\a					   sino(causa um alerta que faz o computador beepar)
+
+\b					  backspace
+
+\n				          nova linha
+
+\r                                        carriage return
+
+\t					  tab
+
+
+Usamos echo com a flag -e para o uso de sequência de escape.
+
+ex: sleep 10; echo -e "Time's up\a"
+
+ou
+
+ex2:  sleep 10; echo -e "Time's up" '\a'
+
+NB:O programa espera o tempo especificado e depois imprime Time's up.
