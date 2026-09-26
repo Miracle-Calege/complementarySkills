@@ -1,0 +1,71 @@
+*******************************************************Movimento do cursor*******************************************************************************************************************
+
+Tecla                                                     Acção
+
+ctrl-A							Move o cursor para o início da linha
+
+
+ctrl-E							Move o cursor para o fim da linha
+
+ctrl-F							Move o cursor para o caracter seguinte(o mesmo que a right arrow)
+
+ctrl-B							Move o cursor para o caracter anterior(o mesmo que a left arrow)
+
+alt-F							Move o cursor para a palavra seguinte
+
+alt-B							Move o cursor para a palavra anterior
+
+ctrl-L							Limpa a tela e coloca o cursor no início do prompt.O mesmo que o comando clear faz.
+
+
+*******************************************************Modificando textos*******************************************************************************************************************
+
+Tecla                                                     Acção
+
+ctrl-D						        Deleta o caracter na posiçao do cursor
+
+ctrl-T							Inverte a posiçao do caracter na posiçao do cursor com o anterior
+
+
+alt-T							Inverte a posiçao da palavra na posiçao do cursor com o anterior
+
+alt-L							Converte os caracteres em minúsculas partindo da localizaçao do cursor até o fim da palavra 
+
+alt-U							Converte os caracteres em maiúsculas partindo da localizaçao do cursor até o fim da palavra
+
+
+*******************************************************Cortar e colar *******************************************************************************************************************
+Tecla                                                     Acção
+
+ctrl-k							 corta o texto  da posiçao do cursor até o fim da linha
+
+ctrl-u							corta o texto  da posiçao do cursor até o início da linha
+
+alt-D							corta o texto da posiçao do cursor até o fim da palavra actual
+
+alt-backspace						corta o texto da posiçao do cursor até o inicio da palavra actual.Se o cursor estiver no inicio da palavra vai cortar a palavra
+                                                        anterior
+
+ctrl-y							cola o texto na posicao actual do cursor
+
+
+NB:Killing e yanking é o mesmo que cortar e colar.Os itens cortados ficam armazenados no buffer(uma área de armazenamento temporário na memória) chamada kill-ring.Nos comandos acima podemos substituir o alt por esc.
+
+*******************************************************Completion *******************************************************************************************************************
+
+Supondo que temos um ficheiro com o nome "ls-output.txt" e queremos listá-los.
+
+Invés de fazermos ls ls-output.txt podemos simplesmente escrever no terminal ls l e pressionar a tecla Tab o terminal vai escrever para nós o comando completo "ls ls-output.txt".Ou seja, o comando procura ocorrência do caracter dado e se encontrar retorna.
+
+Mas se fizermos ls D nao teremos o comando "a completar-se", pois existem vários ficheiros/directórios iniciados por D. Por isso podemos acrescentar um ou mais caracteres para deixar mais preciso. Ex: ls Doc, se ciclarmos Tab vai completar "ls Documents"(se nao tiver nenhum outro directório com mesmo padrao).
+
+Além de completion com caminhos também podemos ter com variáveis(começam com$),username(~),hostnames, etc.
+
+Tecla                                                     Acção
+
+alt-?							Exibe uma lista de possíveis "completions".Podemos ter o mesmo efeito pressionando tab duas vezes
+
+alt-*							Insere todas as possíveis "completions".
+
+
+NB:Colocamos o comando e o caracter e depois usamos as teclas acima. ls D (depois alt-?)

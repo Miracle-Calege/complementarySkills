@@ -1,0 +1,71 @@
+Como já é sabido o bash mantém um histórico dos 500(versões antigas) e 1000(versões recentes) últimos comandos inseridos.A lista desses comandos é guardada no directório home num ficheiro chamado bash_history.
+
+history-> o comando é responsável por retornar uma lista de comandos já inseridos.
+
+ex: history | less
+
+
+ex2:history | grep /usr/bin
+
+NB:O comando acima retorna os comandos usados para manipular o "/usr/bin".
+
+ex.output: 1669  ls -l /usr/bin > ls-output.txt
+
+O 1669 é o número da linha do comando na lista do histórico.
+
+*********************************************************Pesquisando comandos na lista de histórico****************************************************************************************
+
+1.ctrl-R:abre uma aba de pesquisa.ex:(reverse-i-search)`':
+
+2.colocamos a nossa pesquisa entre `'.ex:(reverse-i-search)`/usr/bin'.NB:sempre que inserimos uma palavra o prompt muda por ser uma pesquisa incremental.
+
+3.Depois da ":" teremos o retorno da nossa pesquisa.
+
+4.Podemos pressionar Enter(para executar o comando) ou ctrl-j(para copiar o comando para o prompt).
+
+5.Para sair ctrl-g ou ctrl-c.
+
+
+*********************************************************Manipulando a lista de histórico****************************************************************************************
+
+Tecla								Acção
+
+ctrl-P								Avança para entrada anterior na lista(O mesmo que faz o up arrow). 							 	
+
+ctrl-N								Avança para entrada seguinte na lista(O mesmo que faz o down arrow).
+
+alt-<								Avança para o início/topo da lista
+
+alt->								Avança para o fim da lista(o comando actual)
+
+ctrl-R								pesquisa reversa incremental
+
+alt-P								pesquisa reversa nao-incremental
+
+alt-N								pesquisa nao reversa nao incremental
+
+ctrl-O								executa o comando actual na lista de histórico e avança para o próximo(Ideal se quisermos reexecutar uma sequência de 
+
+								comandos).
+								
+
+*********************************************************Expansão de histórico******************************************************************************************************
+
+
+Sequência						Acção
+
+!!							Repete o último comando.
+
+!númeroComando						Repete o comando com o número fornecido na lista de histórico.
+
+!string							Repete o último comando na lista que inicia pela string
+
+!?							Repete o último comando na lista que contenha a string
+
+*********************************************************Salvando a sessao ******************************************************************************************************
+script-> é um comando usado para salvar a sessão num ficheiro.
+
+Sintaxe:
+
+script nomeFicheiro
+								
