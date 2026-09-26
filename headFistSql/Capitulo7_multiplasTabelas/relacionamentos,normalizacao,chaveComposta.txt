@@ -1,0 +1,50 @@
+************************************************Relacionamentos entre tabelas*****************************************************************************************************************
+
+Relacionamento um para um->aqui um registo numa tabela A só pode ter no máximo um registo correspondente na tabela B.
+
+Relacionamento um para muitos->aqui um registo numa tabela A pode ter muitos registos correspondentes na tabela B, mas a tabela B só pode ter um registo correspondente na tabela A.
+
+Relacionamento muitos para muitos->vários registos na tabela A podem ter vários registos correspondentes na tabela B e vice-versa. 
+
+
+************************************************Chaves compostas *****************************************************************************************************************
+
+Chave composta-> é uma chave primária coomposta por múltiplas colunas criando uma única chave.
+
+Supondo que numa coluna temos 2 ou mais colunas cujos os valores em cada linha devem ser únicos, a junção dessas colunas seria a nossa chave composta.
+
+
+Notação shorthand-> é um jeito rápido de descrever uma dependência funcional.
+
+Sintaxe:
+
+T.x-> T.y
+
+Onde :
+
+T-> é a tabela
+
+X,y-> são colunas.
+
+Lê-se: Na tabela relacional T a coluna Y é funcionalmente dependente da coluna x. 
+
+NB: A leitura é feita da direita para esquerda.
+
+ex:super_heroes.name —> super_heroes.initials.
+
+NB:Uma coluna dependente é aquela que os seus dados podem mudar se a outra coluna mudar.Dependência funcional parcial é aquela que uma coluna depende somente de parte da chave composta.Dependência funcional transitiva é quando uma coluna não chave depende de outra também não chave. 
+
+
+************************************************Normalização*********************************************************************************************************************************
+Segunda forma normal(2FN):
+
+1.Deve estar na primeira forma normal
+
+2.Não deve ter nenhuma dependência parcial.
+
+
+Terceira forma normal(3FN):
+
+1.Deve estar na 2FN.
+
+2.Não deve ter nenhuma dependência transitiva.

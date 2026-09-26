@@ -1,0 +1,53 @@
+Chave estrangeira(foreign key)-> é uma coluna na tabela que referencia a chave primária de uma outra tabela.Geralmente o valor da chave primária na tabela principal é o mesmo que a chave estrangeira da tabela secundária.A chave estrangeira deve estar a referenciar um valor único na tabela pai(não precisa ser a chave primária).
+
+NB:É importante que a tabela esteja na primeira forma normal.
+
+
+*******************************************************Foreign key pontos a considerar******************************************************************************************************
+
+1.A chave estrangeira pode ter um nome diferente da chave primária que ela referencia.
+
+2.A chave primária usada pela chave estrangeira é chamada também de chave pai(parent key) e a tabela de tabela pai(parent table).
+
+3.Chave estrangeira também garante a correspondência entre as linhas de ambas tabelas.
+
+4.Chave estrangeira pode ter o valor null apesar de chave primária não poder.Null quer dizer que não existe nenhuma ligação com uma chave primária na tabela pai.
+
+5.Chave estrangeira não precisa ser única.
+
+
+*******************************************************Criando uma Foreign key *********************************************************************************************************
+
+Constraint-> para criar um foreign devemos usar "constraint" ou durante a criação da tabela(CREATE) ou alterando a tabela(ALTER).
+
+
+Sintaxe:
+
+
+CREATE TABLE nome(
+
+nomeColuna1 tipo dado ...,
+.
+.
+.
+nomeColunaN tipo dado ...,
+
+CONSTRAINT nome_a_sua_escolha FOREIGN KEY(coluna_que_sera_chave_estrangeira) REFERENCES nomeTabelaPai(coluna_na_tabela_pai)
+
+);
+
+ex: CREATE TABLE INTEREST(
+int_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+interest VARCHAR(50) NOT NULL,
+contact_id INT NOT NULL,
+CONSTRAINT my_contacts_contact_id_fk FOREIGN KEY(contact_id) REFERENCES my_contacts(contact_id)
+);
+
+NB:my_contacts_contact_id_fk é o nome da constraint.
+
+
+
+
+
+
+
