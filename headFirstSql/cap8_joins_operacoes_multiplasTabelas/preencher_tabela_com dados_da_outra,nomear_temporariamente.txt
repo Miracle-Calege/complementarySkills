@@ -1,0 +1,85 @@
+*****************************************************************Preenchendo tabelas com dados de uma outra tabela*****************************************************************************
+NB:Há pelo menos 3 ou mais formas de atingir esse objectivo.
+
+
+1.Criar uma nova tabela e inserir os dados vi select.
+
+ex:CREATE TABLE profession
+(
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  profession varchar(20)
+);
+INSERT INTO profession (profession)
+  SELECT profession FROM my_contacts
+  GROUP BY profession
+  ORDER BY profession;
+
+2.Criar uma nova tabela com os dados da outra tabela e usar o ALTER para adicionar um campo com chave primária.
+
+ex:CREATE TABLE profession AS
+  SELECT profession FROM my_contacts
+  GROUP BY profession
+  ORDER BY profession;
+  
+ALTER TABLE profession
+ADD COLUMN id INT NOT NULL AUTO_INCREMENT FIRST,
+ADD PRIMARY KEY(id);
+
+3.Cria a tabela e insere os dados em simultâneo
+
+ex:CREATE TABLE profession
+(
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  profession varchar(20)
+) AS
+  SELECT profession FROM my_contacts
+  GROUP BY profession
+  ORDER BY profession;
+  
+  
+***********************************************************************Aliases*****************************************************************************************************************
+
+AS-> redirecciona o resultando de uma query para que sejam inseridos numa outra/nova tabela.
+
+
+ex:CREATE TABLE profession
+(
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  profession varchar(20)
+) AS
+  SELECT profession FROM my_contacts
+  GROUP BY profession
+  ORDER BY profession;
+  
+  NB:Se nao tivessemos criado na nova tabela 2 colunas o "AS" teria criado uma coluna com mesmo nome e o tipo de dado da coluna do resultado da query(do SELECT), ou seja, teria criado uma coluna com o nome profession  com as características aplicadas a ela na tabela my_contacts.
+  
+  
+  
+  
+**********Alias para colunas******************
+  
+  NB:Para criar alias para coluna colocamos o "As" logo depois do  nome da coluna que queremos referir com um novo nome, seguido pelo novo nome.
+  
+
+  ex:CREATE TABLE profession
+(
+id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+mc_prof varchar(20)
+) AS
+  SELECT profession AS mc_prof FROM my_contacts
+  GROUP BY mc_prof;
+  ORDER BY mc_prof;
+  
+  
+  NB2:SELECT profession AS mc_prof FROM my_contacts, colocamos o alias"AS" logo depois do primeiro uso do nome original da coluna..Alias sao temporários, o nome da coluna original mantem-se(a coluna nao foi renomeada na tabela a que ela pertence). Ideal para caso em que o nome da coluna ou tabela e longo e nao queremos repetí-lo toda hora.
+  
+  
+ **********Alias para tabelas****************** 
+ 
+ NB:Para criar alias para uma tabela colocamos o "AS" logo depois do nome original da tabela seguido pelo "novo nome".
+ 
+ ex:SELECT profession AS mc_prof FROM my_contacts AS mc GROUP BY mc_prof ORDER BY mc_prof;
+ 
+ NB2: Podemos ocultar o "AS" e colocar directamente a seguir do nome original da tabela/coluna o "novo nome".
+ 
+ ex:SELECT profession AS mc_prof FROM my_contacts mc GROUP BY mc_prof ORDER BY mc_prof;

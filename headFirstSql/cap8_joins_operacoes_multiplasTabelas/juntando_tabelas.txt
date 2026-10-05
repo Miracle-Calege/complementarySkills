@@ -1,0 +1,68 @@
+*********************************************************************Join cartesiano/Cartesian join********************************************************************************************
+
+Join cartestiano/producto cartesiano->retorna das as linhas de uma tabela cruzadas com todas as linhas da outra.
+
+
+SINTAXE:
+
+SELECT tabela1.coluna, tabela2.coluna FROM tabela1 CROSS JOIN tabela2;
+
+
+ex:SELECT t.toy, b.boy
+FROM toys AS t
+  CROSS JOIN
+  boys AS b;
+  
+ NB:Foram usados aliases t=toys e b=boys. 
+ 
+ NB2:Invés de colocarmos "CROSS JOIN" podemos colocar vírgula
+ 
+ ex:SELECT t.toy, b.boy
+FROM toys AS t,
+  boys AS b;
+  
+  
+*********************************************************************Inner join****************************************************************************************************************
+
+INNER JOIN-> é uma CROSS JOIN com algumas linhas de resultado removidas por uma condiçao na query.Combina os registos de 2 tabelas usando um operador de comparaçao  numa condiçao, só sao retornadas colunas onde as linhas corresponde a condiçao.
+
+Sintaxe:
+
+SELECT coluna FROM tabela1 INNER JOIN tabela2 ON condicao;
+
+NB:O "ON" pode ser susbtituido por WHERE.
+
+
+ex:SELECT boys.boy, toys.toy
+FROM boys
+  INNER JOIN
+  toys
+ON boys.toy_id = toys.toy_id;
+
+
+NB:No exemplo acima queremos retornar os rapazes e os seus respectivos brinquedos,ou seja, retornamos os brinquedos e os rapazes cujos boys.toy_id(chave estrangeira) e toys.toy_id(chave primária) sao iguais.INNER JOIN que a condiçao é igualdade chama-se de EQUIJOIN.
+
+
+ex2:SELECT boys.boy, toys.toy
+FROM boys
+  INNER JOIN
+toys ON boys.toy_id <> toys.toy_id
+ORDER BY boys.boy;
+
+NB2: O exemplo acima retorna todas os rapazes e os brinquedos que eles nao têm. Chama-se non-equijoin porque a condiçao nao é "=".
+
+
+*********************************************************************Natural join**************************************************************************************************************
+
+NATURAL JOIN->junta as linhas cujo as colunas tenham o mesmo nome em ambas tabelas.
+
+SINTAXE:
+
+SELECT tabela1.coluna, tabela2.coluna FROM tabela1 NATURAL JOIN tabela2;
+
+ex:SELECT boys.boy, toys.toy
+FROM boys
+  NATURAL JOIN
+  toys;
+
+NB:Tem o mesmo resultado obtido no equijoin só que aqui nao é aplicada nenhuma condiçao.

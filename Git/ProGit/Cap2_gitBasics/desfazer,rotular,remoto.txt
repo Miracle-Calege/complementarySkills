@@ -42,21 +42,29 @@ Sintaxe: git restore ficheiro
 ex: git restore gitBasics
 
 
-**********************************Trabalhando em repositórios remotos*******************************
+**********************************Trabalhando em repositórios remotos*****************************************************************************************************************
 
 Repositório remoto é aquele que está hospedado na internet ou algum lado da rede ,mas  também pode estar na nossa máquina mas num local diferente do repositório actual em que estamos trabalhando.
 
+**********************************Exibir repositórios remotos*****************************************************************************************************************
 git remote-> exibe todos os repositórios remotos. Por defeito o nome do repositório remoto que clonamos do server recebe o nome de origin.
 
 git remote -v-> retorna os nomes dos repositórios remotos e os seus respectivos URLs
 
-Para rotular url de um repositório remoto:
+git remote show-> exibe as informações acerca do repositório.
+
+Sintaxe: git remote show remoto/url
+
+ex: git remote show origin
+
+**********************************Rotular/adicionar repositórios remotos*****************************************************************************************************************
 
 Sintaxe:
 git remote add nome url
 
 ex: git remote add repo  https://github.com/paulboone/ticgit
 
+**********************************Pegar actualizações no repositórios remotos*****************************************************************************************************************
 
 git fetch->é o comando usado para pegar do repositório remoto as actualizações que foram feitas no projecto que tu não tens(É usado depois de termos clonado o repositório).
 
@@ -66,6 +74,9 @@ git fetch remote/url
 ex: git fetch repo
 
 NB: Se quisermos pega e fazer merge da branch do repositório remoto com a nossa branch actual podemos usar o comando git pull.
+
+
+**********************************Enviando commits para repositórios remotos*****************************************************************************************************************
 
 git push-> é o comando usado para mandar os ficheiros do nosso repositório local para o servidor.
 
@@ -84,11 +95,8 @@ ex: git push origin master:mastery
 NB:Mandamos a nossa branch master para o nosso repositório remoto e lá a branch vai se chamar mastery.
 
 
-git remote show-> exibe as informações acerca do repositório.
 
-Sintaxe: git remote show remoto/url
-
-ex: git remote show origin
+**********************************Renomear repositórios remotos*****************************************************************************************************************
 
 
 git remote rename-> comando usado para renomear um remoto
@@ -97,7 +105,7 @@ Sintaxe: git remote rename nomeAnterior nomeNovo
 
 ex: git remote repo repoNovo
 
-
+**********************************Remover repositórios remotos*****************************************************************************************************************
 git remote remove-> comando usado para remover um remoto
 
 Sintaxe: git remote remove remote

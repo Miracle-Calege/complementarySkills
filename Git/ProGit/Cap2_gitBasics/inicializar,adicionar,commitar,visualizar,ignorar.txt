@@ -47,6 +47,18 @@ No exemplo acima o directório chamar-se-á libgit2, mas se quisermos dar um nom
  ex: git clone https://github.com/libgit2/libgit2 myRepo
  
  
+ NB:Quando clonamos(git clone url), o repositório clonado torna-se o nosso remoto que por defeito é chamado de origin. Se quisermos renomear de outra maneira:
+ 
+ Sintaxe:
+ 
+ git clone -o novoNome url
+ 
+ ex:git clone -o booyah https://github.com/libgit2/libgit2
+ 
+ NB2: Invés de origin agora o nosso repositório remoto chama-se booyah.
+ 
+ 
+ 
  **************************************Verificando o status do ficheiros *************************
  
  git status->este comando retorna o nome da branch, ficheiros rastreados e não rastreados.

@@ -1,0 +1,69 @@
+NB:Quando fazemos o git fetch o comando retorna do repositório remoto todas as actualizaçoes que nao temos no nosso repositório local, inclusive novas branches.Para casos em que o repositório remoto tem branches que o nosso repositório local nao tem, o comando vai retornar um ponteiro com a seguinte estrutura: remoto/branch. Esse  ponteiro nao é directamente editável(nao trabalhamos directamente  sobre ele).
+
+Temos as seguintes prerrogativas:
+
+1.Criar uma branch do mesmo nome que o repositório remoto com o ponteiro.
+
+ex:git checkout -b serverfix origin/serverfix
+
+NB:O comando acima cria um branch chamada serverfix e torna a branch actual com as informaçoes do origin/serverfix
+
+2.Fazer merge da branch actual com o ponteiro.
+
+ex:git merge origin/serverfix.
+
+
+********************************Rastreamento de branches***********************************************************************************************************************
+
+Rastreamento de branches(tracking branches)-> sao branches remotas que possuem uma relaçao directa com uma branch remota.É vantajoso porque podemos usar comando que retornam e manda commit para o remoto sem especificar as branches, ou seja, os commit saberao para onde ir implicitamente(escrever git pull/git push já será suficiente).
+
+ex1:git checkout --track origin/serverfix
+
+NB: No exemplo acima uma branch chamada serverfix(por cuasa de tag --track) que rastreia a branch do mesmo nome no repositório remoto(origin).
+
+ex2:git checkout serverfix
+
+NB: Faz o mesmo que o comando acima
+
+ex3:git checkout -b sf origin/serverfix
+
+NB:Cria uma branch de nome sf(por causa da flag -b) e torna a branch actual que rastreia o serverfix no repositório remoto.
+
+
+
+******Mudando a branch de rastreamento**********
+
+ex:git branch -u origin/serverfix
+
+NB:Usamos o -u ou --set-upstream-to. O comando alterar o branch de rastreio da branch actual.Invés de usar origin/serverfix para comandos como git merge podemos usar @{upstream} ou @{}.Ex: git merge @{u}
+
+******Listando  rastreamento**********
+
+git branch -vv
+
+    
+    O nome da branch local.
+
+    O hash do último commit.
+    
+    ex output:serverfix f8674d9 [teamone/server-fix-good: ahead 3, behind 1]
+
+    Entre colchetes, a branch remota que ela rastreia (ex: [teamone/server-fix-good]).
+
+    E o mais importante: ahead (à frente) e behind (atrás).
+
+O que significa "ahead" e "behind"?
+
+    ahead 2: Você tem 2 commits locais que ainda não foram enviados para o servidor.
+
+    behind 1: Existe 1 commit no servidor que você ainda não baixou para a sua máquin
+
+
+******Apagando a branch remota**********
+
+Sintaxe: 
+
+git push remoto --delete branch
+
+ex: git push origin --delete serverfix
+

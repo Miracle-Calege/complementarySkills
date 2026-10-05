@@ -1,0 +1,5 @@
+Existem duas formas de integrar mudanças de uma branch na outra.Usando merge e rebase.
+
+NB:Supondo que temos uma branch que foi criada a partir do último commit da branch master, mas nao branch master houveram outras alteraçoes(logo o ponteiro da branch master já nao está no commit que a nova branch está a apontar).
+
+             
