@@ -54,7 +54,7 @@ NB2: O exemplo acima retorna todas os rapazes e os brinquedos que eles nao têm.
 
 *********************************************************************Natural join**************************************************************************************************************
 
-NATURAL JOIN->junta as linhas cujo as colunas tenham o mesmo nome em ambas tabelas.
+NATURAL JOIN->junta as linhas cujo as colunas tenham o mesmo nome em ambas tabelas(identifica as colunas com o mesmo nome e retorna as linhas onde os valores sao iguais).
 
 SINTAXE:
 

@@ -1,0 +1,21 @@
+INTERSECT ->retorna somente os resultados que estao/aparecem em todas queries especificadas.
+
+EXCEPT->retorna somente os resultados que aparecem somente primeira query.
+
+NB:Tem a sintaxe semelhante a da UNION.
+
+SINTAXE:
+
+SELECT coluna1 FROM tabela1
+INTERSECT/EXCEPT
+SELECT coluna2 FROM tabela2
+
+
+ex:
+SELECT title FROM job_current
+INTERSECT
+SELECT title FROM job_desired;
+
+ex2:SELECT title FROM job_current
+	EXCEPT
+SELECT title FROM job_desired;

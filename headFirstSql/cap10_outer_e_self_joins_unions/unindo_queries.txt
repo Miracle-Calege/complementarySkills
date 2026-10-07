@@ -1,0 +1,48 @@
+************************************************************************UNION******************************************************************************************************************
+
+UNION->combina os resultados de 2 ou mais queries numa única tabela(nao há valores duplicados), baseado no que foi especificado no SELECT statement.
+
+
+SINTAXE:
+
+SELECT coluna1 FROM tabela1
+UNION
+SELECT coluna2 FROM tabela2
+UNION
+SELECT coluna3 FROM tabela3;
+
+NB:O último statement leva ";". UNION só pode levar um ORDER BY(nao um order by para cada SELECT) e esse ORDER BY deve estar no último statement.
+
+ex:SELECT title FROM job_current ORDER BY title
+UNION
+SELECT title FROM job_desired ORDER BY title
+UNION
+SELECT title FROM job_listings ORDER BY title;
+
+**********************************************************Regras da UNION**********************************************************************************************************************
+
+1.O número de colunas em cada SELECT deve corresponder(devem ter o mesmo número de colunas)
+
+2.Deve ter a mesma expressao e a mesma funcao agregada em cada SELECT.
+
+3.O tipo de dado nas colunas deve ser o mesmo o compatível.
+
+4.UNION ALL permite que os valores duplicados sejam exibidos mais de uma vez.
+
+5.A ordem dos select nao afecta o resultado.
+
+**********************************************************Criando uma tabela através da UNION*************************************************************************************************
+Sintaxe:
+
+CREATE TABLE nome_tabela AS
+SELECT coluna1 FROM tabela1
+UNION
+SELECT coluna2 FROM tabela2
+UNION
+SELECT coluna3 FROM tabela3;
+
+
+ex:CREATE TABLE my_union AS
+SELECT title FROM job_current UNION
+SELECT title FROM job_desired
+UNION SELECT title FROM job_listings;

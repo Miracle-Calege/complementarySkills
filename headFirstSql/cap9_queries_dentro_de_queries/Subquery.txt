@@ -1,0 +1,68 @@
+***********************************************************************Subquery****************************************************************************************************************
+
+Subquery-> é uma query dentro de uma outra, também chamada de INNER query.A query que envolve a subquery é chamada de OUTER query.NB:Subquery é sempre um SELECT statement.Primeiro é processado a subquery depois usa o resultado para descobrir o resultado da OUTER query.
+
+Sintaxe:
+
+OUTER query (INNER query)
+
+
+ex:
+SELECT mc.first_name, mc.last_name, mc.phone, jc.title
+FROM job_current AS jc NATURAL JOIN my_contacts AS mc  
+WHERE jc.title IN (SELECT title FROM job_listings);
+
+NB:Serao retornados os nomes, apelidos, numero de telefone(tabela my_contacts) e nome das profissoes(job_current) somente daqueles que as profissoes estejam na job_listing(SELECT title FROM job_listings). O contrário de IN é NOT IN.
+
+
+ex2:
+SELECT last_name, first_name
+FROM my_contacts
+WHERE zip_code =  (SELECT zip_code FROM
+                  zip_code WHERE city =
+                 'Memphis' AND state = 'TN')
+                 
+NB:Por ter o operador "=" antes da INNER query a subquery vai retornar um único valor, uma linha de uma coluna(célula) ou também chamada de valor escalar.No exemplo acima serao retornados apelido,nome da tabela my_contacts onde o zip_code for igual ao zip_code da INNER query.
+
+NB2:Subqueries podem ser usadas com INSERT,DELETE,UPDATE e SELECT.Em geral os subquery devem retorna um único valor com excepçao de casos em que usamos IN.O WHERE deve estar sempre presente nas subqueries.
+
+
+***********************************************************************Subquery como coluna***************************************************************************************************
+
+ex:SELECT mc.first_name, mc.last_name,
+(SELECT state
+FROM zip_code
+WHERE mc.zip_code = zip_code) AS state
+FROM my_contacts mc;
+
+NB:Retorna o nome, apelido e o estado(onde o zip_code da tabela my_contacts corresponde ao zip_code da tabela zip_code).
+
+
+NB:JOins sao mais eficientes que subqueries.
+
+
+***********************************************************************Subquery correlacionadas************************************************************************************************
+
+Subquery nao correlacionada é aquela que a subquery nao depende da OUTER query. Entao a Subquery correlacionada é aquela que a subquery depende da OUTER query.
+
+
+SELECT mc.first_name, mc.last_name
+FROM my_contacts AS mc
+WHERE
+3 = (
+SELECT COUNT(*) FROM contact_interest
+WHERE contact_id = mc.contact_id;
+
+NB:A subquery precisa do valor da coluna contact_id da tabela my_contacts. Subquery nao correlacionada é mais eficiente que a correlacionada.
+
+
+
+
+***********************************************************************EXISTS e NOT EXISTS************************************************************************************************
+
+ex:SELECT mc.first_name firstname, mc.last_name lastname, mc.email email
+FROM my_contacts mc
+WHERE EXISTS
+(SELECT * FROM contact_interest ci WHERE mc.contact_id = ci.contact_id )
+
+NB:Exists retorna o nome, apelido e email das pessoas da tabela my_contacts cujo contact_id aparece pelo menos uma vez na tabela contact_interest. O NOT EXISTS faz o contrário.

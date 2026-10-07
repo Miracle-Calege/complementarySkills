@@ -1,0 +1,58 @@
+******************************************************************************OUTER JOIN*******************************************************************************************************
+
+OUTER JOIN divide-se em LEFT OUTER JOIN e RIGHT OUTER JOIN.
+
+LEFT OUTER JOIN->leva todas as linhas da tabela a esqueda(no lado esquerdo) e faz uma correspondência com as linhas da tabela a direita(no lado direito).Este tipo de join retorna as linhas mesmo que elas nao tenham nenhum correspondente na outra tabela(mesmo que na tabelaB nao exista uma FK correspondente a pk da tabelaA), e  os valores sem correspondência sao inicializados por NULL. 
+
+NB:A tabela que aparece depois do "FROM"  e antes da join  é a tabela a esquerda.
+
+ex: SELECT g.girl, t.toy
+FROM girls g
+LEFT OUTER JOIN toys t
+ON g.toy_id = t.toy_id;
+
+NB:O exemplo acima pega todas as linhas da coluna girl da tabela a esquerda(girls) e faz a correspondência com as linhas da tabela a direita(toys-que aparece depois da join). 
+
+
+RIGHT OUTER JOIN -> é o oposto da LEFT OUTER JOIN, pega todas as linhas da tabela a direita e faz a correspondência da tabela a esquerda.
+
+NB:A tabela que aparece depois do "FROM"  e antes da join  é a tabela a direita.
+
+ex:SELECT g.girl, t.toy
+FROM toys t
+RIGHT OUTER JOIN girls g
+ON g.toy_id = t.toy_id;
+
+
+
+NB:LEFT e RIGHT OUTER JOIN sao ideais para saber quais sao os valores da tabela sem correspondência na outra tabela. Existe FULL OUTER JOIN que retorna ambas LEFT e RIGHT mas depende do SGBD.
+
+
+******************************************************************************SELF JOIN*******************************************************************************************************
+
+Chave estrangeira auto-referenciada(Self-referencing foreign key)->é a chave primária de uma tabela usada na mesma tabela para outro propósito(na mesma tabela temos a pk e fk).
+
+
+Self-join->permite fazer query numa tabela como se fossem duas tabelas.
+
+É possível usar join na mesma tabela.
+
+Supondo que temos a seguinte tabela:
+
+clown_info
+id       name            boss_id
+1       Elsie            3
+2       Pickles          5
+3       Snuggles       10
+
+NB:Aqui a coluna boss_id age como self referencing.A Elise é chefiada pelo Snuggles, etc.
+
+
+ex:SELECT c1.name, c2.name AS boss
+FROM clown_info c1
+INNER JOIN clown_info c2
+ON c1.boss_id = c2.id
+
+NB:O exemplo acima retorna os funcionários e os seus respectivos chefe.Os dados estao na mesma tabela.Observe que a tabela clow_info aparece 2 vezes, na primeira vez foi chamada de c1 e a segunda c2 como se fossem duas tabelas diferentes.
+
+
