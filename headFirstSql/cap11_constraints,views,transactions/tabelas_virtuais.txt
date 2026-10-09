@@ -1,0 +1,36 @@
+********************************************************************VIEW***********************************************************************************************************************
+
+VIEW-> é uma forma de salva uma query para visualizar o seu output sem que tenhamos que voltar a escrever a query.É considerada uma tabela virtual,sendo uma tabela virtual podemos usar os comandos usados numa tabela real.NB:Todas as modificaçoes feitas na tabela real serao reflectidas na view e vice-versa, mas se a view tiver funçoes agregadas,GROUP BY,DISTINCT,HAVING estes nao terao nenhum efeito(nao mudarao a tabela real).O comando SHOW TABLES também exibe VIEWS.
+
+Sintaxe:
+
+
+CREATE VIEW nome_view AS
+query_a_salvar;
+
+
+ex:CREATE VIEW tech_writer_jobs AS
+SELECT title, salary, description, zip
+FROM job_listings
+WHERE title = 'Technical Writer';
+
+
+********************************************************************Visualizando VIEWS*********************************************************************************************************
+
+NB:Para visualizar as VVIEWS usamos a mesma sintaxe para visualizar tabelas.
+
+
+Sintaxe:
+
+SELECT colunas FROM nome_view;
+
+
+ex:SELECT * FROM tech_writer_jobs;
+
+
+NB:Por detrás das "cortinas" uma VIEW comporta-se como se estivesse a retornar uma subquery. SELECT * FROM(SELECT title, salary, description, zip
+FROM job_listings
+WHERE title = 'Technical Writer') AS tech_writer_jobs
+
+********************************************************************Notas*********************************************************************************************************
+Uma view actualizável é aquela que permite mudar/fazer operaçoes sobre a tabela original. Estas views incluem todas as colunas NOT NULL da tabela que fazem referência.View nao actualizável é aquela que nao inclue todas as colunas NOT NULL, nao permite usar UPDATE e nem INSERT. 

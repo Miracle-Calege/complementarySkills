@@ -1,0 +1,87 @@
+*****************************************************************Configurando o user***********************************************************************************************************
+
+root user-> por defeito é o primeiro usuário e tem completo controle sobre a base de dados.Ele é responsável por criar contas de para outros usuários.
+
+
+Sintaxe:
+
+
+SET PASSWORD FOR 'nome_usuario'@'onde_SQL_esta_a_correr'=PASSWORD('colocamos a password')
+
+ex:SET PASSWORD FOR 'root'@'localhost' = PASSWORD('b4dcl0wnZ');
+
+NB:A sintaxe pode variar dependendo do SGBD, mas para mysql essa é válida."localhost" indica que o SGBD onde estamos a trabalhar nele é o que está na nossa máquina.Se fosse para um acesso remoto colocariamos o endereço ip ou hostname.
+
+*****************************************************************Criando um user***********************************************************************************************************
+
+O sql guarda as informaçoes dos usuários numa tabela contendo id,usernames,poasswords e o que cada um pode fazer na base de dados.
+
+Sintaxe:
+
+CREATE USER nome_user IDENTIFIED BY 'password';
+
+ex:CREATE USER elsie
+IDENTIFIED BY 'cl3v3rp4s5w0rd';
+
+NB:A sintaxe pode variar dependendo do SGBD, mas para mysql essa é válida.O user ainda nao pode efectuar nenhuma operaçao na base de dados.
+
+*****************************************************************Dando permissoes***********************************************************************************************************
+
+GRANT->usado para dar permissoes aos usuários, podendo determinar o que cada um pode fazer com as tabelas e as colunas.
+
+
+Sintaxe:
+
+GRANT permissao ON nome_tabela TO user;
+
+ex:GRANT SELECT ON
+clown_info
+TO elsie;
+
+NB:Agora elsie pode fazer um SELECT na tabela clown_info. A permissao é o nome de um comando sql.
+
+1.Podemos nomear múltiplos user no mesmo GRANT statement.
+
+ex:GRANT DELETE ON chores
+TO happy, sleepy;
+
+2.Podemos dar a usuários a permissao de dar a outros usuários a permissao que foram dados
+
+ex:GRANT DELETE ON chores
+TO happy, sleepy
+WITH GRANT OPTION;
+
+3.Especifica coluna ou colunas que podem ser usadas invés da tabela inteira
+
+ex:GRANT SELECT(chore_name) ON
+chores TO dopey;
+
+4.Especificar mais de uma permissao na tabela.
+
+ex:GRANT SELECT, INSERT ON
+talking_animals
+TO sneezy;
+
+5.GRANT ALL dá a usuários todas as permissoes(UPDATE,SELECT,INSERT e DELETE) numa tabela específica.
+
+ex:GRANT ALL ON chores TO bashful, doc,
+dopey, grumpy, happy, sleepy, sneezy;
+
+6.Podemos especificarm todas as tabelas na base de dados: base de dados*
+ex:GRANT SELECT ON woodland_cottage.*
+TO doc
+
+7.Permissoes para todas as bases de dados *.*
+ex:GRANT SELECT ON *.*
+TO elsie;
+
+*****************************************************************Combinando criacao de user e permissoes**************************************************************************************
+
+Sintaxe:
+
+GRANT permissao ON nome_tabela TO user IDENTIFIED BY 'password'
+
+ex:GRANT SELECT ON
+clown_info
+TO elsie
+IDENTIFIED BY 'cl3v3rp4s5w0rd';

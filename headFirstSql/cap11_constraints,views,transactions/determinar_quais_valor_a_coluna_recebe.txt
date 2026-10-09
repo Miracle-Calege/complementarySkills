@@ -1,0 +1,38 @@
+********************************************************************CHECK constraint***********************************************************************************************************
+
+CHECK constraint->determina quais valores podem ser inseridos numa coluna.Usa as mesmas condiçoes que WHERE.
+
+1.Adicionando a CHECK constraint durante a criaçao da tabela.
+
+Sintaxe:
+
+CREATE TABLE nome_tabela(
+coluna1,
+.
+.
+colunaN CHECK(colunaN condiçao),
+);
+
+ex:CREATE TABLE piggy_bank
+(
+id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+coin CHAR(1) CHECK (coin IN ('P','N','D','Q'))
+);
+
+
+NB:No exemplo acima o check determina que o valor a ser inserido deve ser um desses(P,N,D,Q) valores diferentes desses nao serao aceites.
+
+
+
+2.Adicionando a CHECK constraint depois da criaçao da tabela.
+
+
+Sintaxe: 
+
+ALTER TABLE nome_tabela ADD CONSTRAINT CHECK coluna condiçao;
+
+ex:ALTER TABLE my_contacts
+ADD CONSTRAINT CHECK gender IN ('M','F');
+
+
+NB:No exemplo acima adicionamos a CHECK constraint na coluna gender, agora só serao permitidos os valores F e M.

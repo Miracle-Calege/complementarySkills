@@ -1,0 +1,62 @@
+***************************************************************************Revogar permissoes**************************************************************************************************
+
+REVOKE-> usamos para revogar/retira permissoes dadas a certos usuários.
+
+Sintaxe:
+
+REVOKE permissao ON nome_tabela FROM user;
+
+
+ex:REVOKE SELECT ON
+clown_info
+FROM elsie;
+
+
+1.Revogando a permissao de dar os outros a sua permissao.
+
+ex:REVOKE GRANT OPTION ON
+DELETE ON chores
+FROM happy, sleepy
+
+NB:Os user happy e sleepy ainda podem usar o comando DELETE na tabela chores só que já nao podem dar essa permissao a um outro user, nesse caso todos os users que havia recebidos permissoes da happy e do sleepy perdem as suas permissoes.
+
+Sintaxe para revogar roles:
+
+REVOKE nome_role FROM user CASCADE/RESTRICT;
+
+***************************************************************************Revogar  com precisao**********************************************************************************************
+
+Há duas formas de revogar permissoes/privilégios de maneira a sermos precisos, usando as palavras-chave CASCADE e RESTRICT.
+
+CASCADE->afecta ao usuário em vista e a todos que ele concedeu permissao.É o padrao/default.
+
+ex:REVOKE DELETE ON chores FROM sleepy CASCADE;
+
+RESTRICT->afecta somente o usuário em vista, mas se estiver tiver concedido permissoes a um outro user dará erro.
+
+ex:REVOKE DELETE ON chores FROM sleepy RESTRICT;
+
+
+***************************************************************************Roles***************************************************************************************************************
+Role-> é uma forma de agrupar permissoes/privilégios específicos e conceder a todos num grupo.O role torna-se um objecto na base de dados.
+
+Sintaxe:
+
+CREATE ROLE nome_role; -> criamos o role
+
+GRANT permissoes ON nome_tabela TO nome_role;-> concedemos/adicionamos as permissoes ao role
+
+GRANT nome_role TO user;-> concedemos o role a um user.
+
+ex:CREATE ROLE data_entry;
+
+GRANT SELECT, INSERT ON some_table TO data_entry;
+
+GRANT data_entry TO doc;
+
+NB:Agora doc terá todos os privilégios(select,insert) contidos no role. Apagamos o role do mesmo jeito que fazemos com uma tabela. DROP ROLE data_entry; quando uma role é apaga os users perdem as permissoes.
+
+WITH ADMIN OPTION->permite que qualquer user com role possa conceder o role a um outro user.
+
+ex:GRANT data_entry TO doc WITH ADMIN OPTION;
+

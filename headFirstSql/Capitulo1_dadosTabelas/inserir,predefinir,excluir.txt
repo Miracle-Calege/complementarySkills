@@ -99,3 +99,12 @@ custo_doughnut DEC(3,2) NOT NULL DEFAULT 1.00
 );
 
 NB:Assim que a tabela for criada e se inserir um registo sem se especifica o valor na coluna "custo)doughnut" o valor será 1.00.
+
+*******************************************************INSERT com AUTO INCREMENT***************************************************************************************************************
+
+ex:INSERT INTO my_contacts VALUES('', 'Murphy', 'Pat',
+'5551239', 'patmurphy@someemail.com', 'X', 1978-04-15,
+19, '10087', 3);
+
+NB:A primeira coluna da tabela é AUTO_INCREMENT, por isso colocamos ''(aspas simples no seu lugar).
+

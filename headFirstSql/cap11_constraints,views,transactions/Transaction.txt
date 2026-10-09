@@ -1,0 +1,32 @@
+*********************************************************Transaction***************************************************************************************************************************
+
+Transaction-> é um conjunto de SQL statements que realizam um única unidade de trabalho.Numa transaction todos os passos devem ser considerados completos para que a transaction seja considerada completa.
+
+
+
+START TRANSACTION->mantem um rastro de tudo o que vier depois dele(até que coloquemos COMMIT ou ROLLBACK).
+
+COMMIT->torna permanente/guarda tudo o que fizemos depois do START TRANSACTION.NB:Só ocorre mudança na base de dados depois de inserirmos este comando.
+
+
+ROLLBACK->reverte para o estado em que estava antes de inserirmos START TRANSACTION.
+
+
+
+ex:START TRANSACTION; -> inicamos a TRANSACTION
+SELECT * FROM piggy_bank;
+UPDATE piggy_bank set coin = 'Q' where coin= 'P'; -> efectuamos uma mudança
+SELECT * FROM piggy_bank;
+ROLLBACK; -> revertemos a mudança
+SELECT * FROM piggy_bank;
+
+
+ex2:START TRANSACTION; -> inicamos a TRANSACTION
+SELECT * FROM piggy_bank;
+UPDATE piggy_bank set coin = 'Q' where coin= 'P';
+SELECT * FROM piggy_bank;
+COMMIT;-> confirmamos a mudança
+SELECT * FROM piggy_bank;
+
+
+NB:Transactions sao ideais para dados que mudam dados na tabela(ex:UPDATE,DELETE,etc).
