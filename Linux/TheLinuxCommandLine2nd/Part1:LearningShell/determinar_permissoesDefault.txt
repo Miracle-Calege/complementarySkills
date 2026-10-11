@@ -1,0 +1,21 @@
+umask-> determina as permissoes padrao que um ficheiro será atribuído quando for criado.Se colocarmos no terminal teremos como retorno o valor 0002(é o padrao).
+
+
+O primeiro dígito(0) representa um dígito especial de segurança.
+
+O segundo dígito(0) representa U.
+
+O terceiro dígito(0) representa g.
+
+O quarto dígito(2) representa o.
+
+NB:Para mudança de permissoes usamos 3 dígitos mas é também possível usar 4(onde o primeiro é geralmente 0).A semelhança do que vimos nas permissoes cada dígito representa uma permissao. Entao partindo do ponto que o nosso primeiro dígito sempre será 0(por enquanto), os demais serao respectivamente u,g,o. Colocar unmask 0002 significa que vai ser retirado a permissao de escrita para os demais(world). Se colocarmos umask 0000 por defeito os ficheiros serao -rw-rw-rw-.
+
+Sintaxe:
+
+umask valor_permissoes_a_serem_removidas
+
+
+ex: umask 0666 
+
+NB:O exemplo acima retirá permissoes a todos.

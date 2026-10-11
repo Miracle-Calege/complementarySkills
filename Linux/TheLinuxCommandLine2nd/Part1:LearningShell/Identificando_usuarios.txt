@@ -1,0 +1,7 @@
+********************************************************Identificando usuários*****************************************************************************************************************
+
+id->exibe a identificaçao do usuário.
+
+ex.output:uid=1000(miracle-calege) gid=1000(miracle-calege) groups=1000(miracle-calege),4(adm),20(dialout),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),114(lpadmin),993(kvm)
+
+NB:Quando um user é criado é automaticamente atribuído um número que é mapeado para o seu username, uid(User id)=1000(miracle-calege)

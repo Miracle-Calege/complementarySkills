@@ -1,0 +1,75 @@
+*************************************************************************Tipos de ficheiros****************************************************************************************************
+
+Atributo                                                   Tipo de ficheiro
+
+-							 Um ficheiro normal
+
+d						         um directório
+
+
+l							link simbólico.Os atributos remanescentes sao sempre rwxrwxrwx, porque os atributos reais sao aqueles que estao no ficheiro que o link
+							faz diferença
+
+c							Um ficheiro especial de caracter.Este ficheiro refere-se a dispositivo que manusea dados em forma de stream de bytes como terminal ou 
+							/dev/null
+
+
+b							Um ficheiro especial de bloco.Refere-se a um ficheiro que manusea dados em blocos como hdd ou dvd.
+
+
+*************************************************************************Atributos de permissao************************************************************************************************
+
+Atributo                                    ficheiro                                     directório
+
+r(read)					 Permite que um ficheiro seja 			permite listar os conteúdos do directório(somente se o atributo de execuçao também constar)
+					 aberto e lido
+
+
+
+
+w(write)                                        permite escrever ficheiros ou truncar,	        Permite ficheiro dentro do directório serem criados, apagados e renomeados
+					 mas nao permite renomear ou deletar ficheiros  	(se o atributo de execuçao também constar)
+					 para deletar e renomear depende d0s atributos
+					 do directório.
+					 
+
+
+
+
+x(execute)                                        permite que um fichero seja tratado		 Permite que um directório seja acessado.
+					 como programa e seja executado.Programas
+					 escritos em linguagem de script devem também
+					 ter o atributo de leitura.
+					 
+
+NB:-rw-rw-r-- 1 miracle-calege miracle-calege 124960 Sep 26 19:39 ls-output.txt
+
+- -> representa o tipo de ficheiro, ficheiro normal
+
+rw- -> representa as permissoes do dono/owner do ficheiro.
+
+rw- -> representa as permissoes do grupo de users.
+
+r-- ->representa permissoes para os demais(também chamado de world).
+
+Depois do primeiro atributo, dividimos os restantes em grupos de 3 onde cada representa o owner, group e world respectivamente.
+					
+					
+*************************************************************************Exemplos *************************************************************************************************************
+
+Atributos de ficheiro 								Significado
+
+-rwx------                                                                      Um ficheiro normal que com as permissoes de escrita, leitura e execuçao concedidas somente ao dono do 
+										ficheiro.
+										
+
+-rw-------									  Um ficheiro normal que com as permissoes de escrita e leitura concedidas somente ao dono do 
+										ficheiro.
+									
+
+-rw-r--r--									Um ficheiro normal com as permissoes de leitura e escrita para o dono do ficheiro, de escrita para o grupo e 
+										o world.
+										
+
+drwxrwx---									um directório em que o dono do ficheiro e o grupo tem permissoes de escrita,leitura e execuçao
+										(incluindo criar,renomear e remover ficheiros).

@@ -1,0 +1,83 @@
+
+chmod-> muda as permissoes de um ficheiro ou directório. NB:Somente o dono do ficheiro ou superusuário podem mudar as permissoes de um ficheiro ou directório. É possível usar o chmod de 2 maneiras distintas: representaçao octal e notaçao simbólica.
+
+
+***************************************************************Representaçao octal***********************************************************************************************************
+
+Octal                  Binário               Permissao
+
+0			000			 ---			
+
+1			001			 --x
+
+2			010			 -w-
+
+3			011			 -wx
+
+4		       	100			  r--
+
+5			101			  r-x	
+
+6			110			   rw-
+
+7			111                        rwx
+
+
+NB: A estrutura de permissos sempre obedece a ordem rwx(primeiro aparece o valor respectivo a leitura,escrita e execuçao).O 1 equivale a dizer que a permissao foi concedida e 0 que nao foi. Então 101 quer dizer que a permissao read(1),write(0) e 1(execuçao), ou seja, o user só tem permissao de leitura e execuçao. Como temos 3 grupos de 3 dígitos que vamos converter para octal e teremos como resultado final só 3 dígitos.
+
+ex: 110(permissoes do dono do ficheiro) 000(grupo) 000(world), convertendo para octal ficará 600.
+
+
+Sintaxe:
+
+chmod valor_octal ficheiro
+
+
+ex: chmod 600 foo.txt
+
+
+***************************************************************Notacao simbólica***************************************************************************************************************
+
+Esta notacao divide-se em 3 partes: quem será afectado pela mudança, qual operaçao será executada e qual permissao será definida.
+
+Quem será afectado pela mudança?
+
+Símbolo                                    significado
+
+u					 user/dono do ficheiro ou directório
+
+
+g					 dono do grupo
+
+
+o					 world(outros)
+
+
+a                                         todos(u,g,o)
+
+NB:Se nenhum símbolo for especificado vai ser assumido como a(todos).
+
+
+Qual operaçao será executada?
+
++(mais) -> indica que uma permissao está a ser concedida.
+
+-(menos) -> indica que uma permissao está a ser removida.
+
+=(igual) -> indica que somente as permissoes especificadas serão concedidas e as demais(em uso) serão removidas.
+
+
+Sintaxe:
+
+chmod quem operacao permissao ficheiro
+
+
+ex: chmod u+x  foo.txt -> estamos a conceder a permissao de execuçao ao owner.
+
+ex2:chmod u-x  foo.txt-> estamos a remover a permissao de execuçao ao owner.
+
+ex3: chmod +x  foo.txt->concede a permissao de execuçao a todos
+
+ex4: chmod go=rw foo.txt-> concede ao grupo(g) e os demais(o) as permissoes de escrita e leitura(Se antes deste comando eles tinham a permissao de execuçao, depois dele só terao de escrita e leitura).
+
+ex5: chmod u+x, go=rx foo.txt ->adiciona permissao de execuçao ao owner e leitura e execuçao ao grupo.
