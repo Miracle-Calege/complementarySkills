@@ -1,0 +1,83 @@
+Processos-> é um conjunto de programas aguardando a sua vez para serem atendidos pela CPU. Cada processo é vinculado a um número, process ID (PID), estes ficam ordenados de forma crescente.
+
+**************************************************************************Visualizando processos***********************************************************************************************
+
+ps-> é o comando usado para visualizar processos.
+
+
+ex.output:
+
+PID     TTY     TIME    CMD
+8129  pts/0    00:00:00 bash
+8173  pts/0    00:00:00 ps
+
+NB:PID: coluna que representa o ID dos processos, TTY:teletype refere-se ao terminal de controle do processo,TIME:exibe a quantidade de tempo de CPU consumido pelo processo e CMD:exibe os processos.
+
+
+Sintaxe:
+
+ps x
+
+NB:O comando ps com a option "x" exibe todos os processos com ou sem terminal de controle.
+
+ex.output:
+
+PID TTY      STAT   TIME COMMAND
+3757 ?        Ss     0:02 /usr/lib/systemd/systemd --user
+3765 ?        S      0:00 (sd-pam)
+3785 ?        Ss     0:00 /usr/bin/dbus-daemon --session --address=systemd: -
+3786 ?        S<sl   0:00 /usr/bin/pipewire
+3790 ?        SLsl   0:00 /usr/bin/gnome-keyring-daemon --foreground --compon
+3791 ?        Ss     0:00 /usr/bin/mpris-proxy
+3792 ?        S<sl   0:01 /usr/bin/wireplumber
+3793 ?        Ssl    0:00 /usr/bin/pipewire -c filter-chain.conf
+3794 ?        S<sl   0:00 /usr/bin/pipewire-pulse
+3878 ?        Ssl    0:00 /usr/libexec/xdg-document-portal
+3883 ?        Ssl    0:00 /usr/libexec/xdg-permission-store
+3932 tty2     Ssl+   0:00 /usr/libexec/gdm-wayland-session /usr/bin/gnome-ses
+
+NB: Na columa TTY onde temos "?" indica que nao existe um terminal de controle, STAT: esta coluna refere-se a estado do processo.
+
+
+Sintaxe:
+
+ps aux
+
+NB:O comando exibe processos pertencentes a cada user.Adicionando mais colunas chamadas de BSD-style behavior
+
+ex.output:
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.1  0.2  26632 14896 ?        Ss   07:54   0:04 /sbin/init sp
+root           2  0.0  0.0      0     0 ?        S    07:54   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        S    07:54   0:00 [pool_workque
+root           4  0.0  0.0      0     0 ?        I<   07:54   0:00 [kworker/R-rc
+root           5  0.0  0.0      0     0 ?        I<   07:54   0:00 [kworker/R-sy
+root           6  0.0  0.0      0     0 ?        I<   07:54   0:00 [kworker/R-kv
+
+NB:A coluna user:representa o ID do user dono do processo, %CPU:mostra o uso da CPU em percentagens, %MEM:mostra o uso da memória em percentagens, VSZ:mostra o tamanho da memória virtual, RSS:mostra a quantidade de RAM usado pelo processo em kilobytes e START:exibe a hora ou data(se tiver passar 24h) do ínicio do processo.
+
+
+**************************************************************************Tabela de estado*****************************************************************************************************
+
+Estado                 Significado
+
+R			Running.O processos está em execuçao ou pronto para execuçao.
+
+S                       Sleeping.O processo nao está em execuçao, pode estar a espera de um evento para entrar em execuçao.
+
+D                       num estado de sleep ininterrupto, aguardando por I/O como um disk drive.
+
+
+T                      Parado.O processo foi instruído a parar.
+
+
+Z                      Processo extinto,é um processo filho que terminou mas nao foi "limpado" pelo processo pai. NB:Processo pai é aquele que gera outros processos, processos filhos.
+
+
+<                      Um processo com alta prioridade(leva mais tempo de cpu).
+
+
+N                     Um processo com baixa prioridade(leva menos tempo de cpu).
+
+
+

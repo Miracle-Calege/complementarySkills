@@ -1,0 +1,42 @@
+********************************************************************************Desligando o sistema*******************************************************************************************
+
+reboot-> comando usado para reiniciar o sistema operativo.
+
+poweroff-> desliga o pc.
+
+halt-> para a execuçao do SO.
+
+shutdown->tem a capacidade de executar qualquer dos efeitos do comando acima.
+
+NB:Devemos usar com privilégios de superusuário.
+
+
+
+Sintaxe:
+
+shutdown -option  tempo wall
+
+NB:tempo representa o momento em que queremos desligar o so e wall a mensagem a ser encaminhada para todos os dispositivos logados.
+
+ex: sudo shutdown -h now. -> este comando para o so imediatamente(now).
+
+ex2: sudo shutdown -r now -> faz o reboot da máquina imediatamente.qq11
+
+********************************************************************************outros comandos relacionados a processos***********************************************************************
+
+Comandos 					Descriçao
+
+pstree						exibe uma lista de processos em forma de árvore mostrando a relacao pai-filho entre processos
+
+
+vmstat						exibe os recursos do sistema(memória,swap e I/O disk). Para exibir o estado de forma contínua devemos especificar o tempo em segundos.
+						ex: vmstat 5
+
+
+xload					        um programa gráfico que desenha um gráfico exibindo a carga do sistema no decorrer do tempo
+
+
+tload					     	similar ao xload para o gráfico é desenhado no terminal.
+
+
+						

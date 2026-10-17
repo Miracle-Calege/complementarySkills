@@ -1,0 +1,71 @@
+******************************************************************Interrompendo processos******************************************************************************************************
+
+Vamos executar um programa chamado xlogo. Vamos escrever xlogo no terminal.
+
+Enquanto o  xlogo estiver em execuçao o prompt nao retornará. Para interromper este processo usamos ctrl+c.
+
+Sintaxe:
+
+programa
+
+ex:xlogo
+
+ex2:webstorm -> será aberto o ide webstorm
+
+******************************************************************Colocando processos no background*******************************************************************************************
+
+No caso anterior executamos um programa e nos podíamos fazer mais nenhuma operaçao co o prompt enquanto aquele programa estava em execuçao. Supondo que nao queiramos que o programa em execuçao termine, mas também queiramos realizar outra operaçao no prompt, nesse caso colocaremos o programa a correr no background.
+
+Sintaxe:
+
+programa &
+
+ex: xlogo &
+
+
+ex.output: [1] 11497
+
+NB:Esse comando retorna o número do job e o PID. Um processo executado no background é imune ao ctrl+c.
+
+
+******************************************************************Trabalho*********************************************************************************************************************
+
+jobs-> lista os trabalhos iniciados pelo shell.
+
+ex.output:
+
+[1]+ running xlogo &  -> exibe o número do job, o estado e o comando executado.
+
+******************************************************************Devolvendo o processo para o foreground**************************************************************************************
+fg-> retorna o processo para foreground.
+
+Sintaxe:
+
+fg %numero_job
+
+ex: fg %1
+
+NB:O sinal "%" + numero_job sao chamados de jobspec, se só tivermos um único job nao há necessidade de especificá-lo.
+
+******************************************************************Pausando processos**********************************************************************************************************
+
+Para pausar um processo usamos ctrl+z, esse comando além de pausar coloca o comando no background.
+
+bg-> usado para continuar a execuçao do programa que foi pausado no background.
+
+
+Sintaxe:
+
+bg %numero_job
+
+ex: bg %1
+
+NB:O sinal "%" + numero_job sao chamados de jobspec, se só tivermos um único job nao há necessidade de especificá-lo.
+
+******************************************************************Notas***********************************************************************************************************************
+
+Por que lançar um programa pela linha de comando?
+
+1.Casos que temos programas que nao estao listados no menu.
+
+2.Lançar no terminal permite ver erros que nao sao exibidos quando lançamos de forma gráfica.

@@ -1,0 +1,57 @@
+********************************************************Visualizando processos de forma dinâmica***********************************************************************************************
+
+top-> exibe o estado da máquina(processos) de forma dinâmica enquanto ps exibe o estado da máquina(processos) naquele momento em que foi executado.NB:O top exibe actualizaçoes contínuas em cada 3 segundos dos processos. O top é composto por 2 partes: uma sumarizaçao no topo e por uma tabela logo depois da sumarizaçao.q
+
+ex.output:
+
+top - 08:59:01 up  1:04,  1 user,  load average: 1.20, 0.58, 0.55
+Tasks: 252 total,   1 running, 251 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  3.1 us,  7.0 sy,  5.2 ni, 84.5 id,  0.2 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :   7188.7 total,    905.1 free,   5612.7 used,   1239.5 buff/cache     
+MiB Swap:   4096.0 total,   3314.5 free,    781.5 used.   1576.0 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND  
+   5453 miracle+  20   0 6203972   3.6g   3.6g S  25.2  51.5  16:51.82 Virtual+ 
+   4124 miracle+  20   0 4978132 148328  73672 S   7.0   2.0   5:24.70 gnome-s+ 
+   5414 miracle+  20   0 1264720  18460  11164 S   3.0   0.3   1:48.08 VBoxSVC  
+  10895 miracle+  20   0 1381044  57424  43216 S   2.3   0.8   0:03.84 gnome-t+ 
+   5341 miracle+  20   0 1987596  53940  43748 S   1.7   0.7   1:02.34 Virtual+ 
+   2561 mysql     20   0 2196220  27744   8096 S   1.0   0.4   0:33.02 mysqld   
+   5355 miracle+  20   0  550440  33664  25504 S   1.0   0.5   0:18.33 Xwayland 
+   
+   
+   
+NB:Informaçoes nos campos do top
+
+Linha                       campo                                significado
+1                           top                                   Nome do programa
+                            08:59:01				  hora actual do dia
+                            up  1:04				  Indica as o tempo em que a pc está ligado
+                            1 user 				  indica a quantidade de user logados
+                            load average			  refere-se a quantidade de processos no runnable state que estao partilhando a cpu.O valores representam respectivamente a
+                            				          média de carga dos processos nos primeiro 60segundos, nos últimos 5 minutos e nos últimos 15minutos.
+                            
+2			    tasks				 resume o número de processos e os seus estados
+
+
+
+3   			    %cpu(s)				  descreve as actividades que a cpu está a realizar
+			    3.1 us				   os processos do user está a usar 3.1% do processador(processos fora do kernel).
+			    7.0 sy				   7% do processador está a ser usado pelos processos do sistema(kernel).
+			    5.2 ni				   5.2% do processador está a ser usado por processos de baixa prioridade.
+			    84.5 id				   84.5% do processador está ocioso.
+			    0.2 wa			           0.2% do processador está aguardando for I/O.
+			    0,0% hi	                           Tempo gasto a processar interrupções de hardware.
+	                    0,0% si                               Tempo gasto a processar interrupções de software.
+		             0,0% st                                Tempo de CPU retirado à máquina virtual pelo hipervisor, caso esteja num ambiente virtualizado.
+
+
+4                           Mem:				 mostra como a RAM está a ser usada.
+
+
+5                          Swap:				mostra como a memória virtual está a ser usada.
+			     
+			
+	
+
+NB: Após usar o comando top podemos inserir "h" que vai exibir uma tela de ajuda ou "q" para sair do top.

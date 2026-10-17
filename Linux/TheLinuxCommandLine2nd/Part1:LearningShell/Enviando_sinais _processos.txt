@@ -1,0 +1,75 @@
+******************************************************Enviando sinais para  processos**********************************************************************************************************
+
+kill-> é um comando usado para enviar sinais aos processos.NB:ctrl+c e ctrl+z sao exemplos de sinais.
+
+Sintaxe:
+
+kill -sinal PID
+
+NB:Invés do PID também podemos usar o jobspec. Se nenhum sinal por especificado o sinal TERM(terminate) vai ser usado como padrao.
+
+ex: kill 12674
+
+********************************************************Sinais comuns**************************************************************************************************************************
+
+Numero				Nome 			 Significado
+
+1				HUP			Usar para fazer a reinicializaçao de programas(relendo os ficheiro de configuraçao).Indica também que o terminal de controle encerrou.
+
+
+2				INT			Interrompeo programa.O mesmo que ctrl+c
+
+
+9				kill                    força o programa a terminar, nao permitindo que seja feita "limpeza" ou progressos sejam salvos.Usando quando outras formas de encerrar
+							falham.
+
+
+15				TERM			termina/encerra, de forma suave permitindo o programa efectuar operaçoes de limpeza.
+
+
+18				CONT			Continua.Restaura um processo depois de um sinal STOP ou TSTP.Os comandos fg e bg também enviam esses sinais.
+
+
+19				STOP			Para.Pausa o processo sem terminá-lo.O programa nao pode ignorar este sinal.
+
+20                              TSTP			Pausa um processo o mesmo que acontece ctrl+. Este sinal pode ser ignorado pelo programa.
+
+
+3 				QUIT			sair.
+
+11                              SEGV			Sinal enviado para processos que fazem uso ilegal da memória.
+
+28				WINCH			Sinal enviado pelo sistema quando um janela muda o seu tamanho.
+
+
+NB:KILL e STOP sao sinais de "força" para obrigar um programa que está a rejeitar os sinais normais.Podemos também concatenar O SIG e o nome do sinal, ex: SIGINT e funcionará da mesma forma.
+
+ex: kill -INT 13601
+
+ex2: kill -SIGINT 13602
+
+NB:O sinal nos 2 exemplos é o mesmo.
+
+
+NB2:Processos com donos só os donos devem usar o comando kill ou devemos ter privilégios de superusuário. kill -l exibe uma lista completa de sinais usados com o comando.
+
+
+
+******************************************************Enviando sinais para múltiplos processos*************************************************************************************************
+
+killall-> é usado para mandar sinais para múltiplos processos correspondendo a um programa especificado ou username.
+
+Sintaxe:
+
+killall -u user -sinal nomes
+
+ex: killall xlogo
+
+NB:O user e o sinal sao opcionais já que quando nao especificados concluímos que é o user actual e o sinal é o TERM.
+
+
+
+
+
+
+
